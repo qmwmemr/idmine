@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kg.idmine.member.repository.IMemberMapper">
+
+	<!-- resultMap -->
+	<resultMap id="MemberMap"
+		type="com.kg.idmine.member.model.MemberVO">
+		<id property="mem_id" column="mem_id" />
+		<result property="mem_pw" column="mem_pw" />
+		<result property="mem_name" column="mem_name" />
+		<result property="mem_nickname" column="mem_nickname" />
+		<result property="mem_mobile" column="mem_mobile" />
+		<result property="mem_email" column="mem_email" />
+		<result property="mem_addr1" column="mem_addr1" />
+		<result property="mem_addr2" column="mem_addr2" />
+		<result property="mem_addr3" column="mem_addr3" />
+		<result property="mem_birth" column="mem_birth" />
+		<result property="mem_gender" column="mem_gender" />
+		<result property="mem_check" column="mem_check" />
+		<result property="mem_regdate" column="mem_regdate" />
+		<result property="mem_money" column="mem_money" />
+		<result property="mem_loginAPI" column="mem_loginAPI" />
+		<result property="session_id" column="session_id" />
+		<result property="limit_time" column="limit_time" />
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="insert">
+		INSERT INTO im_member
+		(mem_id, mem_pw, mem_name,
+		mem_nickname, mem_mobile, mem_email, mem_addr1, mem_addr2, mem_addr3,
+		mem_birth, mem_gender, mem_check, mem_regdate, mem_loginAPI)
+		VALUES
+		(#{mem_id}, #{mem_pw}, #{mem_name}, 
+		#{mem_nickname}, #{mem_mobile}, #{mem_email}, #{mem_addr1}, #{mem_addr2}, #{mem_addr3},
+		#{mem_birth}, #{mem_gender}, #{mem_check}, #{mem_regdate}, #{mem_loginAPI})
+	</insert>
+
+	<!-- 회원 한명 정보 -->
+	<select id="selectOne" resultMap="MemberMap">
+		SELECT *
+		FROM im_member
+		WHERE mem_id = #{mem_id}
+	</select>
+
+	<!-- 회원 전체 보기 -->
+	<select id="selectAll" resultMap="MemberMap">
+		SELECT *
+		FROM im_member
+	</select>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="delete">
+		DELETE 
+		FROM im_member
+		WHERE mem_id = #{mem_id}
+	</delete>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*)
+		FROM im_member
+		WHERE mem_id = #{mem_id}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
