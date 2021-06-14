@@ -20,4 +20,7 @@ public interface IMemberService {
 
 	// 아이디 중복체크(1:중복 0:중복x)
 	Integer checkId(String mem_id);
+
+	// 별명 중복체크(1:중복 0:중복x)
+	Integer checkNickname(String mem_nickname);
 }

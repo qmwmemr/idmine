@@ -3770,21 +3770,21 @@ ol {
 	margin-bottom: 35px;
 }
 
-.register-form div .group-input,
-.login-form div .group-input {
+.register-form form .group-input,
+.login-form form .group-input {
 	margin-bottom: 25px;
 }
 
-.register-form div .group-input label,
-.login-form div .group-input label {
+.register-form form .group-input label,
+.login-form form .group-input label {
 	display: block;
 	font-size: 18px;
 	color: #252525;
 	margin-bottom: 13px;
 }
 
-.register-form div .group-input input,
-.login-form div .group-input input {
+.register-form form .group-input input,
+.login-form form .group-input input {
 	border: 1px solid #ebebeb;
 	height: 50px;
 	width: 100%;
@@ -3792,10 +3792,10 @@ ol {
 	padding-right: 15px;
 }
 
-.register-form div .register-btn,
-.register-form div .login-btn,
-.login-form div .register-btn,
-.login-form div .login-btn {
+.register-form form .register-btn,
+.register-form form .login-btn,
+.login-form form .register-btn,
+.login-form form .login-btn {
 	width: 100%;
 	letter-spacing: 2px;
 	margin-top: 5px;

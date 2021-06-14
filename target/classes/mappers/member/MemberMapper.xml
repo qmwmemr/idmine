@@ -33,16 +33,19 @@
 		mem_nickname, mem_mobile, mem_email, mem_addr1, mem_addr2, mem_addr3,
 		mem_birth, mem_gender, mem_check, mem_regdate, mem_loginAPI)
 		VALUES
-		(#{mem_id}, #{mem_pw}, #{mem_name}, 
-		#{mem_nickname}, #{mem_mobile}, #{mem_email}, #{mem_addr1}, #{mem_addr2}, #{mem_addr3},
-		#{mem_birth}, #{mem_gender}, #{mem_check}, #{mem_regdate}, #{mem_loginAPI})
+		(#{mem_id}, #{mem_pw}, #{mem_name},
+		#{mem_nickname}, #{mem_mobile}, #{mem_email}, #{mem_addr1}, #{mem_addr2},
+		#{mem_addr3},
+		#{mem_birth}, #{mem_gender}, #{mem_check},
+		default, #{mem_loginAPI})
 	</insert>
 
 	<!-- 회원 한명 정보 -->
 	<select id="selectOne" resultMap="MemberMap">
 		SELECT *
 		FROM im_member
-		WHERE mem_id = #{mem_id}
+		WHERE
+		mem_id = #{mem_id}
 	</select>
 
 	<!-- 회원 전체 보기 -->
@@ -53,11 +56,11 @@
 
 	<!-- 회원 탈퇴 -->
 	<delete id="delete">
-		DELETE 
+		DELETE
 		FROM im_member
 		WHERE mem_id = #{mem_id}
 	</delete>
-	
+
 	<!-- 아이디 중복확인 -->
 	<select id="checkId" resultType="int">
 		SELECT COUNT(*)
@@ -65,8 +68,13 @@
 		WHERE mem_id = #{mem_id}
 	</select>
 
-
-
+	<!-- 별명 중복확인 -->
+	<select id="checkNickname" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		im_member
+		WHERE mem_nickname = #{mem_nickname}
+	</select>
 
 
 

@@ -40,4 +40,9 @@ public class MemberService implements IMemberService {
 		return mapper.checkId(mem_id);
 	}
 
+	@Override
+	public Integer checkNickname(String mem_nickname) {
+		return mapper.checkNickname(mem_nickname);
+	}
+	
 }
