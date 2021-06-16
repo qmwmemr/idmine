@@ -26,8 +26,6 @@
 				<div class="register-form">
 					<h2>회원가입</h2>
 
-
-
 					<div>
 						<div class="group-input" style="margin-bottom: 25px;">
 							<label for="username"

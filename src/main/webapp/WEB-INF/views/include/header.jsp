@@ -127,7 +127,7 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
+                            <li><a href="#">Women’s Clothing</a></li>
                             <li><a href="#">Men’s Clothing</a></li>
                             <li><a href="#">Underwear</a></li>
                             <li><a href="#">Kid's Clothing</a></li>
@@ -140,8 +140,7 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
@@ -149,9 +148,14 @@
                                 <li><a href="#">Kid's</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
+                        <c:if test="${login == null }">
+                        	<li><a href="/login">로그인</a></li>
+                        </c:if>
+                        <c:if test="${login != null }">
+							<li><a href="/myPage">마이페이지</a></li>
+							<li><a href="/logout">로그아웃</a></li>
+						</c:if>
+                        <li><a href="#">More</a>
                             <ul class="dropdown">
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
