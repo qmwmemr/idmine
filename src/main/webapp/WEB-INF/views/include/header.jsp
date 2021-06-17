@@ -141,6 +141,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="/">Home</a></li>
+                        <li><a href="/cs">고객관리</a></li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
