@@ -14,7 +14,7 @@ public class PageCreator {
 	private boolean next; // 다음 버튼 활성화 여부
 
 	// 한 화면에 보여질 페이지 수
-	private final Integer displayPageNum = 5;
+	private final Integer displayPageNum = 6;
 
 	//URI 파라미터를 쉽게 만들어주는 유틸메서드 선언
 	public String makeURI(Integer page) {

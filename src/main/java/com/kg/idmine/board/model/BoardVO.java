@@ -1,6 +1,7 @@
 package com.kg.idmine.board.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardVO {
 
@@ -18,6 +19,7 @@ public class BoardVO {
 	private Date board_regDate; //글 작성날짜
 	private Date board_updateDate; //글 수정 날짜
 	
+	private List<AttachImageVO> imageList; //이미지 정보
 	
 	public Integer getBoard_no() {
 		return board_no;
@@ -91,15 +93,20 @@ public class BoardVO {
 	public void setBoard_updateDate(Date board_updateDate) {
 		this.board_updateDate = board_updateDate;
 	}
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [board_no=" + board_no + ", board_name=" + board_name + ", board_content=" + board_content
 				+ ", board_price=" + board_price + ", board_dc=" + board_dc + ", board_category=" + board_category
 				+ ", board_id=" + board_id + ", board_nickname=" + board_nickname + ", board_likeCnt=" + board_likeCnt
 				+ ", board_buyCnt=" + board_buyCnt + ", board_regDate=" + board_regDate + ", board_updateDate="
-				+ board_updateDate + "]";
+				+ board_updateDate + ", imageList=" + imageList + "]";
 	}
-	
 	
 	
 }

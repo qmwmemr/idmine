@@ -23,23 +23,37 @@
 
 	<!-- 중복되는 동적 SQL문에 대한 처리 -->
 	<sql id="search">
-		<if test="condition == 'title'">
-			WHERE board_name LIKE CONCAT('%', #{keyword}, '%')
+		<if test="condition == '전체'">
+			WHERE
+			board_name LIKE CONCAT('%', #{keyword}, '%')
 		</if>
-		<if test="condition == 'singer'">
-			WHERE board_name LIKE CONCAT('%', #{keyword}, '%')
+		<if test="condition == '커피'">
+			WHERE board_category = "커피"
+			AND board_name LIKE CONCAT('%',
+			#{keyword}, '%')
 		</if>
-		<if test="condition == 'writer'">
-			WHERE board_name LIKE CONCAT('%', #{keyword}, '%')
+		<if test="condition == '과자'">
+			WHERE board_category = "과자"
+			AND board_name LIKE CONCAT('%',
+			#{keyword}, '%')
 		</if>
-		<if test="condition == 'titleSinger'">
-			WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
-			OR board_singer LIKE CONCAT('%', #{keyword}, '%')
+		<if test="condition == '기타'">
+			WHERE board_category = "기타"
+			AND board_name LIKE CONCAT('%',
+			#{keyword}, '%')
 		</if>
 	</sql>
 
 	<!-- 게시글 등록 -->
 	<insert id="insert">
+		
+		<!-- 가장 최근에 실행된 insert의 열 값 반환 -->
+		<selectKey resultType="int" keyProperty="board_no" order="AFTER">
+  		
+  			SELECT LAST_INSERT_ID()
+  		
+  		</selectKey>
+		
 		INSERT INTO im_board
 		(board_no, board_name,
 		board_content,
@@ -51,7 +65,8 @@
 		board_updateDate)
 		VALUES(#{board_no}, #{board_name}, #{board_content},
 		#{board_price}, #{board_dc}, #{board_category},
-		#{board_id}, #{board_nickname},
+		#{board_id},
+		#{board_nickname},
 		default, default, default, default)
 	</insert>
 
@@ -67,7 +82,7 @@
 	<!-- 게시글 전체 보기(페이징,검색) -->
 	<select id="getArticleList" resultMap="BoardMap">
 		SELECT *
-		FROM wt_board
+		FROM im_board
 		<include refid="search" />
 		ORDER BY board_no DESC
 		LIMIT #{pageStart}, #{countPerPage}
@@ -76,14 +91,48 @@
 	<!-- 총 게시물 갯수 -->
 	<select id="countArticles" resultType="int">
 		SELECT COUNT(*)
-		FROM wt_board
+		FROM im_board
 		<include refid="search" />
 	</select>
+
+	<!-- 이미지 등록 -->
+	<insert id="imageEnroll">
+		INSERT INTO im_image
+		(board_no, fileName, uploadPath, uuid) 
+		values (#{board_no}, #{fileName}, #{uploadPath}, #{uuid})
+	</insert>
+	
+
+	<!-- 게시글 수정 -->
+	<update id="update">
+		UPDATE im_board
+		SET board_name = #{board_name},
+		board_content = #{board_content},
+		board_price = #{board_price},
+		board_dc = #{board_dc},
+		board_category = #{board_category},
+		board_updateDate = default
+		WHERE board_no =
+		#{board_no}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="delete">
+		DELETE
+		FROM im_board
+		WHERE board_no = #{board_no}
+	</delete>
+
+
+
+
+
+
 
 	<!-- 총 게시물 갯수(랜덤) -->
 	<select id="countAll" resultType="int">
 		SELECT COUNT(*)
-		FROM wt_board
+		FROM im_board
 	</select>
 
 
@@ -95,22 +144,6 @@
 		board_no = #{board_no}
 	</update>
 
-	<!-- 게시글 수정 -->
-	<update id="update">
-		UPDATE wt_board
-		SET board_title = #{board_title},
-		board_singer = #{board_singer},
-		board_album = #{board_album}, board_link = #{board_link}
-		WHERE board_no =
-		#{board_no}
-	</update>
-
-	<!-- 게시글 삭제 -->
-	<delete id="delete">
-		DELETE
-		FROM wt_board
-		WHERE board_no = #{board_no}
-	</delete>
 
 
 </mapper>

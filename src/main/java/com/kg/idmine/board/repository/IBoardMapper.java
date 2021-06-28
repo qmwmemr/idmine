@@ -2,6 +2,7 @@ package com.kg.idmine.board.repository;
 
 import java.util.List;
 
+import com.kg.idmine.board.model.AttachImageVO;
 import com.kg.idmine.board.model.BoardVO;
 import com.kg.idmine.commons.SearchVO;
 
@@ -25,4 +26,9 @@ public interface IBoardMapper {
 
 	// 게시글 삭제 기능
 	void delete(Integer board_no);
+	
+	//이미지 등록
+	void imageEnroll(AttachImageVO vo);
+	
+	
 }

@@ -7,7 +7,7 @@ public class PageVO {
 	
 	public PageVO() {
 		this.page = 1;
-		this.countPerPage = 5;
+		this.countPerPage = 6;
 	}
 	
 	//클라이언트가 전달한 페이지번호를 데이터베이스의 LIMIT절에 맞는 숫자로 변환.
@@ -31,7 +31,7 @@ public class PageVO {
 	}
 	public void setCountPerPage(Integer countPerPage) {
 		if(countPerPage <= 0 || countPerPage > 50) {
-			this.countPerPage = 5;
+			this.countPerPage = 6;
 			return;
 		}
 		this.countPerPage = countPerPage;
