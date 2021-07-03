@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kg.idmine.board.model.AttachImageVO;
 import com.kg.idmine.board.model.BoardVO;
+import com.kg.idmine.board.model.TotalVO;
 import com.kg.idmine.commons.SearchVO;
 
 public interface IBoardMapper {
@@ -15,6 +16,9 @@ public interface IBoardMapper {
 	List<BoardVO> getArticleList(SearchVO search);
 	Integer countArticles(SearchVO search);
 
+	//모든 정보가 담긴
+	List<TotalVO> getAllList(SearchVO search);
+	
 	// 게시글 좋아요 상승 처리
 	void updateLikeCnt(Integer board_no);
 
@@ -30,5 +34,25 @@ public interface IBoardMapper {
 	//이미지 등록
 	void imageEnroll(AttachImageVO vo);
 	
+	//이미지 삭제
+	void imageDelete(Integer board_no);
+	
+	//이미지 불러오기(한개)
+	AttachImageVO imageOne(Integer board_no);
+	
+	//이미지 불러오기(리스트)
+	List<AttachImageVO> imageAll();
+	
+	//조회수 증가
+	void updateViewCnt(Integer board_no);
+	
+	//인기글4(사진)
+	List<TotalVO> photoTop();
+	
+	//인기글4(영상)
+	List<BoardVO> videoTop();
+	
+	//회원이 쓴 게시글 추출
+	List<BoardVO> memArticle(String mem_id);
 	
 }

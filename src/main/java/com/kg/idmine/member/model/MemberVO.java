@@ -14,14 +14,10 @@ public class MemberVO {
 	private String mem_addr2; //주소
 	private String mem_addr3; //상세주소
 	private Date mem_birth; //생년월일
-	private Integer mem_gender; //성별 1:남자 2:여자
-	private Integer mem_check; //회원구분 1:구매자 2:판매자
 	private Date mem_regdate; //회원가입한 날짜
-	private Integer mem_money; 
 	private String mem_loginAPI; //로그인API 
 	private String session_id;
 	private Date limit_time;
-	
 	
 	
 	public String getMem_id() {
@@ -84,29 +80,11 @@ public class MemberVO {
 	public void setMem_birth(Date mem_birth) {
 		this.mem_birth = mem_birth;
 	}
-	public Integer getMem_gender() {
-		return mem_gender;
-	}
-	public void setMem_gender(Integer mem_gender) {
-		this.mem_gender = mem_gender;
-	}
-	public Integer getMem_check() {
-		return mem_check;
-	}
-	public void setMem_check(Integer mem_check) {
-		this.mem_check = mem_check;
-	}
 	public Date getMem_regdate() {
 		return mem_regdate;
 	}
 	public void setMem_regdate(Date mem_regdate) {
 		this.mem_regdate = mem_regdate;
-	}
-	public Integer getMem_money() {
-		return mem_money;
-	}
-	public void setMem_money(Integer mem_money) {
-		this.mem_money = mem_money;
 	}
 	public String getMem_loginAPI() {
 		return mem_loginAPI;
@@ -130,10 +108,11 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_nickname="
 				+ mem_nickname + ", mem_mobile=" + mem_mobile + ", mem_email=" + mem_email + ", mem_addr1=" + mem_addr1
-				+ ", mem_addr2=" + mem_addr2 + ", mem_addr3=" + mem_addr3 + ", mem_birth=" + mem_birth + ", mem_gender="
-				+ mem_gender + ", mem_check=" + mem_check + ", mem_regdate=" + mem_regdate + ", mem_money=" + mem_money
-				+ ", mem_loginAPI=" + mem_loginAPI + ", session_id=" + session_id + ", limit_time=" + limit_time + "]";
+				+ ", mem_addr2=" + mem_addr2 + ", mem_addr3=" + mem_addr3 + ", mem_birth=" + mem_birth
+				+ ", mem_regdate=" + mem_regdate + ", mem_loginAPI=" + mem_loginAPI + ", session_id=" + session_id
+				+ ", limit_time=" + limit_time + "]";
 	}
+	
 	
 	
 	

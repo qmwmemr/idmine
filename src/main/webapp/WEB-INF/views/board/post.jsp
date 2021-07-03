@@ -51,8 +51,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb-text product-more">
-					<a href="./index.html"><i class="fa fa-home"></i> Home</a> <a
-						href="./shop.html">Shop</a> <span>상품 등록 하기</span>
+					<a href="/"><i class="fa fa-home"></i> Home</a> <a
+						href="/board/">추억</a> <span>추억 나눔</span>
 				</div>
 			</div>
 		</div>
@@ -68,57 +68,39 @@
 			<div align="center">
 				<div class="col-lg-6">
 
-					<h4>상품 등록하기</h4>
+					<h4>추억 나눔</h4>
 					<div class="row">
 						<div class="col-lg-12" style="margin-bottom: 40px;">
-							<label for="board_name">상품명<span>*</span></label> <input
+							<label for="board_name">추억 이름<span>*</span></label> <input
 								type="text" id="board_name" name="board_name"
 								style="margin-bottom: 5px;"> 
 							<div id="nameChk"></div>
 						</div>
-						<div class="col-lg-6" style="margin-bottom: 40px;">
-							<label for="board_price">가격<span>*</span></label> <input
-								type="text" id="board_price" name="board_price"
+						
+						<div class="col-lg-12" style="margin-bottom: 40px;">
+							<label for="board_simple">한줄 소개</label> <input
+								type="text" id="board_simple" name="board_simple"
 								style="margin-bottom: 5px;"> 
-							<div id="priceChk"></div>
-						</div>
-						<div class="col-lg-6" style="margin-bottom: 40px;">
-							<label for="board_dc">할인율</label> 
-								<input id="discount_interface" maxlength="2" value="0" style="margin-bottom: 5px;">
-								<input type="hidden" value="0"
-								id="board_dc" name="board_dc" style="margin-bottom: 5px;">
-							<span class="step_val">할인 가격 : <span class="span_discount"></span></span>
-							<div id="dcChk"></div>
+							<div id="simpleChk"></div>
 						</div>
 
 						<div class="col-lg-12" style="margin-bottom: 40px;">
 							<label for="board_category">카테고리<span>*</span></label> <select
-								name="board_category"
+								name="board_category" id="board_category"
 								style="border: 1px solid #ebebeb; height: 50px; width: 100%; padding-left: 20px; padding-right: 15px; margin-bottom: 5px;">
 								<option value="" selected disabled hidden>선택</option>
-								<option value="커피">커피</option>
-								<option value="과자">과자</option>
-								<option value="기타">기타</option>
+								<option value="story">이야기</option>
+								<option value="photo">사진</option>
+								<option value="video">영상</option>
 							</select> <div id="categoryChk"></div>
 						</div>
 						
-						<div class="col-lg-12" style="margin-bottom: 40px;">
-							<label for="board_image">상품 이미지<span>*</span></label> 
-						<div>
-							<input
-								type="file" multiple="multiple" id="fileItem" name="uploadFile"
-								style="margin-bottom: 5px;">
-							<div id="uploadResult">
-							<!--  
-								<div id="result_card">
-									<div class="imgDeleteBtn">x</div>
-									<img src="/board/display?fileName=다운로드.png">
-								</div>
-							-->	
-							</div>
-						</div> 
-							<div id="nameChk"></div>
+						<div id="change" class="col-lg-12">
+						
 						</div>
+						
+						
+						
 
 						<div class="col-lg-12" style="margin-bottom: 40px;">
 							<label for="board_content">설명<span>*</span></label>
@@ -126,22 +108,10 @@
 							<div id="contentChk"></div>
 						</div>
 
-						<!-- 세션에서 아이디와 별명 불러와서 보내기
+						<!-- 세션에서 아이디와 별명 불러와서 보내기-->
 						<input type="hidden" name="board_id" value="${login.mem_id}">
 						<input type="hidden" name="board_nickname" value="${login.mem_nickname}">
-						 -->
-
-
-
-						<div class="col-lg-12">
-							<div class="create-item">
-								<label for="acc-create"> Create an account? <input
-									type="checkbox" id="acc-create"> <span
-									class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-
+						 
 
 					</div>
 					<div class="checkout-content">
@@ -165,26 +135,18 @@
 <script>
 $(function(){
 	
-	const getPriceCheck = RegExp(/^[0-9]*$/); //가격(숫자만 정규식)
-	const getDcCheck = RegExp(/^[0-9][0-9]?$/); //할인율(0~99 숫자만)
-	
-	
-	
-	
 	
 let postform = $("#post-form")
 	
 	//체크 변수
 	let ck1 = false;		
-	let ck2 = false;		
+	let ck2 = true;		
 	let ck3 = true;		
-	let ck4 = false;		
-	let ck5 = false;	
 	
 	$('#board_name').on('keyup',function(){
 		
 		if($('#board_name').val() ===""){
-			$("#nameChk").html("<b style='font-size:14px; color:red;'>[상품명을 입력해주세요]</b>")
+			$("#nameChk").html("<b style='font-size:14px; color:red;'>['추억 이름'을 입력해주세요]</b>")
 			ck1 = false;
 		}else{
 			$("#nameChk").html("<b style='font-size:14px; color:green;'>[입력완료]</b>")
@@ -192,50 +154,42 @@ let postform = $("#post-form")
 		}
 	});
 	
-	$('#board_price').on('keyup',function(){
-		
-		if($('#board_price').val() ===""){
-			$("#priceChk").html("<b style='font-size:14px; color:red;'>[가격을 입력해주세요]</b>")
-			ck2 = false;
-		}else if(!getPriceCheck.test($("#board_price").val())){
-			$("#priceChk").html("<b style='font-size:14px; color:red;'>[숫자만 입력해주세요]</b>")
-			ck2 = false;
-		}else{
-			$("#priceChk").html("<b style='font-size:14px; color:green;'>[입력완료]</b>")
-			ck2 = true;
-		}
-	});
-	
-	$('#discount_interface').on('keyup',function(){
-		
-		if(!getDcCheck.test($("#discount_interface").val())){
-			$("#dcChk").html("<b style='font-size:14px; color:red;'>[0~99 사이의 숫자를 적어주세요]</b>")
-			ck3 = false;
-		}else{
-			$("#dcChk").html("<b style='font-size:14px; color:green;'>[입력완료]</b>")
-			ck3 = true;
-		}
-	});
-	
-	//$('#board_category').on('keyup',function(){
-	if($('#board_category').val() === null){
-		$("#categoryChk").html("<b style='font-size:14px; color:red;'>[카테고리를 선택해주세요]</b>")
-		ck4 = false;
-	}else{
-		$("#categoryChk").html("<b style='font-size:14px; color:green;'>[입력완료]</b>")
-		ck4 = true;
-	}
-	//});
-	
 		
 	
 	/* 상품 등록 버튼 */
 	$("#post-btn").on("click", function(e) {
 
 		e.preventDefault();
-			
 		
-		if(ck1 && ck2 && ck3 && ck4 ){
+		let category = $("#board_category option:selected").val();
+		console.log("category: " +category);
+		
+		if(category="photo"){
+			let photoinput = $('input[name="uploadFile"]').val();
+			console.log("photoinput " +photoinput);
+			if(photoinput == ""){
+				ck2 = false;
+				console.log("ck2 :" +ck2);
+			}else{
+				ck2 = true;
+				console.log("ck2 :" +ck2);
+			}
+		}else if(category="video"){
+			let linkinput = $("#board_link").val();
+			console.log("linkinput " +linkinput);
+			if(linkinput == ""){
+				ck2 = false;
+				console.log("ck2 :" +ck2);
+			}else{
+				ck2 = true;
+				console.log("ck2 :" +ck2);
+			}
+		}else{
+			ck2 = true;
+		}
+		
+		
+		if(ck1 && ck2){
 			postform.submit();
 			alert("글 등록이 완료되었습니다.")
 		}else{
@@ -247,104 +201,175 @@ let postform = $("#post-form")
 	});
 	
 	
-	/* 이미지 업로드 */
-	$("input[type='file']").on("change", function(e){
+$("#board_category").change(function(){
 		
-		/* 이미지 존재시 삭제 */
-		if($(".imgDeleteBtn").length > 0){
-			deleteFile();
-		}
+		let category = $("#board_category option:selected").val();
+		let change = $("#change")
+		let str = "";
 		
-		let formData = new FormData();
-		let fileInput = $('input[name="uploadFile"]');
-		let fileList = fileInput[0].files;
-		let fileObj = fileList[0];
+		console.log("작동");
+		console.log(category);
 		
-		/*
-		if(!fileCheck(fileObj.name, fileObj.size)){
-			return false;
-		}
-		//alert("통과");
-		*/
-		
-		for(let i = 0; i < fileList.length; i++){
-			formData.append("uploadFile", fileList[i]);
-		}
-		
-		$.ajax({
-			url: '/board/uploadAjaxAction',
-	    	processData : false,
-	    	contentType : false,
-	    	data : formData,
-	    	type : 'POST',
-	    	dataType : 'json',
-	    	success : function(result){
-	    		console.log(result);
-	    		showUploadImage(result);
-	    	},
-			error : function(result){
-				alert("이미지 파일이 아닙니다.");
-	    	}
-		});
-		
-		
-	});
-	
-	
-	//이미지 크기 및 확장자 제한
-	let regex = new RegExp("(.*?)\.(jpg|png)$");
-	let maxSize = 1048576 * 3; //3MB
-	
-	function fileCheck(fileName, fileSize){
+		if(category == "story"){
+			alert("당신의 이야기를 나누어 주세요")
+			$("#change *").remove();
+			
+		}else if(category == "photo"){
+			alert("추억 사진을 나누어 주세요");
+			
+			$("#change *").remove();
+			str += '<div style="margin-bottom: 40px;">';
+			str += '<label for="board_image">사진<span>*</span></label>';
+			str += '<div>';
+			str += '<input type="file" multiple="multiple" id="fileItem" name="uploadFile" style="margin-bottom: 5px;"> ';
+			str += '<div id="uploadResult">';
+			str += '</div>';
+			str += '</div>';
+			str += '<div>';
+			str += '<div id="imageChk"></div>';
+			str += '</div>';
+			
+			change.append(str);
+			
+			/* 이미지 업로드 */
+			$("input[type='file']").on("change", function(e){
+				
+				console.log("이미지 업로드 작동")
+				
+				/* 이미지 존재시 삭제 */
+				if($(".imgDeleteBtn").length > 0){
+					deleteFile();
+				}
+				
+				let formData = new FormData();
+				let fileInput = $('input[name="uploadFile"]');
+				let fileList = fileInput[0].files;
+				let fileObj = fileList[0];
+				
+				/*
+				if(!fileCheck(fileObj.name, fileObj.size)){
+					return false;
+				}
+				//alert("통과");
+				*/
+				
+				for(let i = 0; i < fileList.length; i++){
+					formData.append("uploadFile", fileList[i]);
+				}
+				
+				$.ajax({
+					url: '/board/uploadAjaxAction',
+			    	processData : false,
+			    	contentType : false,
+			    	data : formData,
+			    	type : 'POST',
+			    	dataType : 'json',
+			    	success : function(result){
+			    		console.log(result);
+			    		showUploadImage(result);
+			    	},
+					error : function(result){
+						alert("이미지 파일이 아닙니다.");
+			    	}
+				});
+				
+				
+			});
+			
+			//이미지 크기 및 확장자 제한
+			let regex = new RegExp("(.*?)\.(jpg|png)$");
+			let maxSize = 1048576 * 3; //3MB
+			
+			function fileCheck(fileName, fileSize){
 
-		if(fileSize >= maxSize){
-			alert("파일 사이즈 초과");
-			return false;
-		}
-			  
-		if(!regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드할 수 없습니다.");
-			return false;
+				if(fileSize >= maxSize){
+					alert("파일 사이즈 초과");
+					return false;
+				}
+					  
+				if(!regex.test(fileName)){
+					alert("해당 종류의 파일은 업로드할 수 없습니다.");
+					return false;
+				}
+				
+				return true;		
+				
+			}
+			
+			
+			/* 이미지 삭제 버튼 동작 */
+			$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+				
+				deleteFile();
+				
+			});
+			
+			/* 파일 삭제 메서드 */
+			function deleteFile(){
+				
+				let targetFile = $(".imgDeleteBtn").data("file");
+				
+				let targetDiv = $("#result_card");
+				
+				$.ajax({
+					url: '/board/deleteFile',
+					data : {fileName : targetFile},
+					dataType : 'text',
+					type : 'POST',
+					success : function(result){
+						console.log(result);
+						
+						targetDiv.remove();
+						$("input[type='file']").val("");
+						
+					},
+					error : function(result){
+						console.log(result);
+						
+						alert("파일을 삭제하지 못하였습니다.")
+					}
+				});
+			} //파일 삭제 메서드 end
+			
+			
+			
+		}else if(category == "video"){
+			alert("추억 영상을 나누어 주세요");
+			
+			$("#change *").remove();
+			str += '<div style="margin-bottom: 40px;">';
+			str += '<label for="board_link">YouTube URL<span>*</span></label>';
+			str += '<input type="text" id="board_link" name="board_link" style="margin-bottom: 5px;"> ';
+			str += '<div id="linkChk"></div>';
+			str += '</div>';
+			
+			change.append(str);
+			
+			let linkinput = $('input[name="board_link"]').val();
+			console.log("링크: "+linkinput);
+			
+			if(linkinput==""){
+				console.log("없음");
+			}else{
+				console.log("있음");
+			}
 		}
 		
-		return true;		
 		
-	}
+		
+	}); //카테고리 이벤트 end
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 });//제이쿼리 끝
 	
-	
-/* 할인율 Input 설정 */
-$("#discount_interface").on("propertychange change keyup paste input", function(){
-	
-	let userInput = $("#discount_interface");
-	let discountInput = $("input[name='board_dc']");
-	
-	let discountRate = userInput.val();					// 사용자가 입력할 할인값
-	let sendDiscountRate = discountRate / 100;					// 서버에 전송할 할인값
-	let goodsPrice = $("input[name='board_price']").val();			// 원가
-	let discountPrice = goodsPrice * (1 - sendDiscountRate);		// 할인가격
-	        
-	$(".span_discount").html(discountPrice);
-	discountInput.val(sendDiscountRate);	
-	
-});
-
-$("input[name='board_price']").on("change", function(){
-	
-	let userInput = $("#discount_interface");
-	let discountInput = $("input[name='board_dc']");
-	
-	let discountRate = userInput.val();					// 사용자가 입력한 할인값
-	let sendDiscountRate = discountRate / 100;			// 서버에 전송할 할인값
-	let goodsPrice = $("input[name='board_price']").val();			// 원가
-	let discountPrice = goodsPrice * (1 - sendDiscountRate);		// 할인가격
-	
-	$(".span_discount").html(discountPrice);
-	
-});
-
-
 	
 	
 	//위지윅 적용(상품 소개)
@@ -380,39 +405,7 @@ $("input[name='board_price']").on("change", function(){
 		uploadResult.append(str); 
 	}
 	
-	/* 이미지 삭제 버튼 동작 */
-	$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
-		
-		deleteFile();
-		
-	});
 	
-	/* 파일 삭제 메서드 */
-	function deleteFile(){
-		
-		let targetFile = $(".imgDeleteBtn").data("file");
-		
-		let targetDiv = $("#result_card");
-		
-		$.ajax({
-			url: '/board/deleteFile',
-			data : {fileName : targetFile},
-			dataType : 'text',
-			type : 'POST',
-			success : function(result){
-				console.log(result);
-				
-				targetDiv.remove();
-				$("input[type='file']").val("");
-				
-			},
-			error : function(result){
-				console.log(result);
-				
-				alert("파일을 삭제하지 못하였습니다.")
-			}
-		});
-	}
 	
 	
 </script>

@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        <span>소개</span>
                     </div>
                 </div>
             </div>
@@ -29,15 +29,12 @@
                             <div class="card">
                                 <div class="card-heading active">
                                     <a class="active" data-toggle="collapse" data-target="#collapseOne">
-                                        Is There Anything I Should Bring?
+                                        무엇을 하는 사이트인가요?
                                     </a>
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
+                                        <p>저희는 추억을 주고 받는 사이트 입니다. </p>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +56,7 @@
                             <div class="card">
                                 <div class="card-heading">
                                     <a data-toggle="collapse" data-target="#collapseThree">
-                                        Where Can I Find The Wall Street Journal?
+                                        더 추가하고픈 기능이 있나요?
                                     </a>
                                 </div>
                                 <div id="collapseThree" class="collapse" data-parent="#accordionExample">

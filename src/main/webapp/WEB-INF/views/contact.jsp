@@ -42,8 +42,7 @@
                 <div class="col-lg-5">
                     <div class="contact-title">
                         <h4>Contacts Us</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is simply random text. It has roots in a piece of
-                            classical Latin literature from 45 BC, maki years old.</p>
+                        <p>팀프로젝트로 제작한 홈페이지입니다. </p>
                     </div>
                     <div class="contact-widget">
                         <div class="cw-item">
@@ -51,8 +50,9 @@
                                 <i class="ti-location-pin"></i>
                             </div>
                             <div class="ci-text">
-                                <span>Address:</span>
-                                <p>60-49 Road 11378 New York</p>
+                                <span>Name:</span>
+                                <p>정지원</p>
+                                <p>김지환</p>
                             </div>
                         </div>
                         <div class="cw-item">
@@ -61,7 +61,8 @@
                             </div>
                             <div class="ci-text">
                                 <span>Phone:</span>
-                                <p>+65 11.188.888</p>
+                                <p>010 - 1234 - 5678</p>
+                                <p>010 - 9721 - 3006</p>
                             </div>
                         </div>
                         <div class="cw-item">
@@ -71,6 +72,7 @@
                             <div class="ci-text">
                                 <span>Email:</span>
                                 <p>hellocolorlib@gmail.com</p>
+                                <p>qmwmemr@naver.com</p>
                             </div>
                         </div>
                     </div>
@@ -79,7 +81,7 @@
                     <div class="contact-form">
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
-                            <p>Our staff will call back later and answer your questions.</p>
+                            <p>저희 홈페이지에 바라는 점이나 기능이 있으면 의견을 보내주세요.</p>
                             <form action="#" class="comment-form">
                                 <div class="row">
                                     <div class="col-lg-6">

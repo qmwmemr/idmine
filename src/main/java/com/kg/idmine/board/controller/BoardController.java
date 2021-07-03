@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
 
 import javax.imageio.ImageIO;
 
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kg.idmine.board.model.AttachImageVO;
 import com.kg.idmine.board.model.BoardVO;
+import com.kg.idmine.board.model.TotalVO;
 import com.kg.idmine.board.service.IBoardService;
 import com.kg.idmine.commons.PageCreator;
 import com.kg.idmine.commons.PageVO;
@@ -54,13 +56,36 @@ public class BoardController {
 		PageCreator pc = new PageCreator();
 		pc.setPaging(search);
 
-		List<BoardVO> list = service.getArticleList(search);
+		List<TotalVO> list = service.getAllList(search);
 		pc.setArticleTotalCount(service.countArticles(search));
-
+		
+		List<String> image = new ArrayList<String>();
+		
+		for(TotalVO vo : list) {
+			if(vo.getBoard_category().equals("photo")) {
+				String a = vo.getUploadPath().replaceAll("\\\\", "/");
+				String link = a + "/s_" + vo.getUuid() + "_" + vo.getFileName();
+				
+				image.add(link);
+			}
+		}
+		
+		System.out.println("image: " + image);
+		
+		model.addAttribute("link",image);
 		model.addAttribute("list", list);
 		model.addAttribute("pc", pc);
 
-		return "/board/list";
+		System.out.println("conditon : " + search.getCondition());
+		
+		if(search.getCondition().equals("story")) {
+			return "/board/story";
+		}else if(search.getCondition().equals("photo")) {
+			return "/board/photo";
+		}else {
+			return "/board/video";
+		}
+		
 	}
 
 	// 글작성
@@ -76,11 +101,44 @@ public class BoardController {
 		System.out.println("/board/post post");
 
 		System.out.println("parameter: " + vo);
+		
+		
+		if(vo.getBoard_link() != null) {
+			
+			if(vo.getBoard_link().contains("watch?v=")) {
+				System.out.println("링크로 입력");
+				String origin = vo.getBoard_link();
+				int idx = origin.indexOf("=");
+				String link = origin.substring(idx+1);
+				System.out.println("추출 링크: " + link);
+				
+				vo.setBoard_link(link);
+			}else {
+				System.out.println("공유로 입력");
+				String origin = vo.getBoard_link();
+				int idx = origin.indexOf("e/");
+				String link = origin.substring(idx+2);
+				System.out.println("추출 링크: " + link);
+				
+				vo.setBoard_link(link);
+			}
+			
+		}
 
+		
 		service.insert(vo);
 		ra.addFlashAttribute("msg", "postSuccess");
 		
-		return "redirect:/board/";
+		System.out.println("카테고리: "+ vo.getBoard_category());
+		
+		if(vo.getBoard_category().equals("story")) {
+			return "redirect:/board/?condition=story";
+		}else if(vo.getBoard_category().equals("photo")) {
+			return "redirect:/board/?condition=photo";
+		}else {
+			return "redirect:/board/?condition=video";
+		}
+		
 	}
 
 	// 제품 상세보기
@@ -89,10 +147,24 @@ public class BoardController {
 
 		System.out.println("/board/content get");
 		System.out.println("parameter(글번호): " + board_no);
+		service.updateViewCnt(board_no);
 		BoardVO vo = service.selectOne(board_no);
 		System.out.println("parameter(글내용) : " + vo);
 		model.addAttribute("article", vo);
 
+		if(vo.getBoard_category().equals("photo")) {
+			AttachImageVO image = service.imageOne(board_no);
+			
+			String a = image.getUploadPath().replaceAll("\\\\", "/");
+						
+			String link = a + "/" + image.getUuid() + "_" + image.getFileName();
+			
+			model.addAttribute("img",link);
+		}
+		
+		
+		
+		
 		return "/board/content";
 	}
 
@@ -130,12 +202,20 @@ public class BoardController {
 
 		System.out.println("URL: /board/delete => POST");
 		System.out.println("parameter(글 번호): " + board_no);
+		BoardVO vo = service.selectOne(board_no);
+		String category = vo.getBoard_category();
 		service.delete(board_no);
 		ra.addFlashAttribute("msg", "deleteSuccess")
 		.addAttribute("page", paging.getPage())
 		.addAttribute("countPerPage", paging.getCountPerPage());
 
-		return "redirect:/board/";
+		if(category.equals("story")) {
+			return "redirect:/board/?condition=story";
+		}else if(category.equals("photo")) {
+			return "redirect:/board/?condition=photo";
+		}else {
+			return "redirect:/board/?condition=video";
+		}
 	}
 
 	

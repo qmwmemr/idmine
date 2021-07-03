@@ -8,9 +8,9 @@
 	<!-- 히카리 커넥션풀 빈 등록 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul" />
-		<property name="username" value="root" />
-		<property name="password" value="mysql" />					
+		<property name="jdbcUrl" value="jdbc:mysql://musicdb.clgyljbk3lvy.ap-northeast-2.rds.amazonaws.com:3306/idmine" />
+		<property name="username" value="admin" />
+		<property name="password" value="wlghks23" />					
 	</bean>
 	
 	<!-- 데이터 소스 객체 빈 등록 -->
@@ -29,6 +29,7 @@
 	<mybatis-spring:scan base-package="com.kg.idmine.member.repository"/>
 	<mybatis-spring:scan base-package="com.kg.idmine.board.repository"/>
 	<mybatis-spring:scan base-package="com.kg.idmine.cs.repository"/>
+	<mybatis-spring:scan base-package="com.kg.idmine.like.repository"/>
 		
 		
 		

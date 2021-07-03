@@ -93,7 +93,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
     <script src="<c:url value='/js/main.js'/>"></script>
     
-    
+ <!--     
 <script>
 $(function(){
 	
@@ -125,7 +125,7 @@ $(function(){
 
 
 </script>
-    
+    -->
 </body>
 
 </html>

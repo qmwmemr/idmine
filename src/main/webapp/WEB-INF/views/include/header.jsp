@@ -55,21 +55,18 @@
 				<div class="row">
 					<div class="col-lg-2 col-md-2">
 						<div class="logo">
-							<a href="/"> <img
-								src="<c:url value='/img/logo.png'/>" alt="">
+							<a href="/"> <img src="<c:url value='/img/logo.png'/>" alt="">
 							</a>
 						</div>
 					</div>
 					<div class="col-lg-7 col-md-7">
+
+						<!-- 검색기능		
 						<div class="advanced-search">
-							<!--  <button type="button" class="category-btn">All Categories</button> -->
 							<select id="condition" class="category-btn" name="condition">
-								<option value="전체" ${param.condition == '전체' ? 'selected' : '' }>전체
-									&nbsp;&nbsp;</option>
-								<option value="커피" ${param.condition == '이야기' ? 'selected' : '' }>썰</option>
-								<option value="과자" ${param.condition == '사진' ? 'selected' : '' }>사진</option>
-								<option value="기타" ${param.condition == '영상' ? 'selected' : '' }>영상</option>
-								<option value="기타" ${param.condition == '반려동물' ? 'selected' : '' }>반려동물</option>
+								<option value="story" ${param.condition == 'story' ? 'selected' : '' }>이야기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+								<option value="photo" ${param.condition == 'photo' ? 'selected' : '' }>사진</option>
+								<option value="video" ${param.condition == 'video' ? 'selected' : '' }>영상</option>
 							</select>
 							<div class="input-group">
 								<input type="text" placeholder="What do you need?"
@@ -79,14 +76,13 @@
 								</button>
 							</div>
 						</div>
+					-->
+
 					</div>
 					<div class="col-lg-3 text-right col-md-3">
 						<ul class="nav-right">
-							<li class="heart-icon"><a href="#"> <i
-									class="icon_heart_alt"></i> <span>1</span>
-							</a></li>
 							<li class="cart-icon"><a href="#"> <i
-									class="icon_bag_alt"></i> <span>3</span>
+									class="icon_bag_alt"></i>
 							</a>
 								<div class="cart-hover">
 									<div class="select-items">
@@ -126,15 +122,13 @@
 											href="#" class="primary-btn checkout-btn">CHECK OUT</a>
 									</div>
 								</div></li>
-							<li class="cart-price">
-							<c:if test="${login != null }">
-							<button type="button" onclick="location.href='/member/logout' " class="primary-btn" style="border:0; outline:0;">로그아웃</button>
-							</c:if>
-							<c:if test="${login == null }">
-							<button type="button" onclick="location.href='/login' " class="primary-btn" style="border:0; outline:0;">로그인</button>
-							</c:if>
-							
-							</li>
+							<li class="cart-price"><c:if test="${login != null }">
+									<button type="button" onclick="location.href='/member/logout' "
+										class="primary-btn" style="border: 0; outline: 0;">로그아웃</button>
+								</c:if> <c:if test="${login == null }">
+									<button type="button" onclick="location.href='/loginN' "
+										class="primary-btn" style="border: 0; outline: 0;">로그인</button>
+								</c:if></li>
 						</ul>
 					</div>
 				</div>
@@ -144,35 +138,30 @@
 			<div class="container">
 				<div class="nav-depart">
 					<div class="depart-btn">
-						<i class="ti-menu"></i> <span>All departments</span>
+						<i class="ti-menu"></i> <span>Category</span>
 						<ul class="depart-hover">
-							<li><a href="#">Women’s Clothing</a></li>
-							<li><a href="#">Men’s Clothing</a></li>
-							<li><a href="#">Underwear</a></li>
-							<li><a href="#">Kid's Clothing</a></li>
-							<li><a href="#">Brand Fashion</a></li>
-							<li><a href="#">Accessories/Shoes</a></li>
-							<li><a href="#">Luxury Brands</a></li>
-							<li><a href="#">Brand Outdoor Apparel</a></li>
+							<li><a href="/board/?condition=story">이야기</a></li>
+							<li><a href="/board/?condition=photo">사진</a></li>
+							<li><a href="/board/?condition=video">영상</a></li>
 						</ul>
 					</div>
 				</div>
 				<nav class="nav-menu mobile-menu">
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li><a href="/board/">상품</a></li>
-						<c:if test="${login != null }">
-							<li><a href="/myPage">마이페이지</a></li>
-						</c:if>
+						<li><a href="/board/?condition=photo">추억</a></li>
 						<li><a href="/cs">고객관리</a></li>
+						<li><a href="/about">소개</a></li>
+						<li><a href="/contact">Contact</a></li>
 						<li><a href="#">More</a>
 							<ul class="dropdown">
-								<li><a href="./blog-details.html">Blog Details</a></li>
-								<li><a href="./shopping-cart.html">Shopping Cart</a></li>
-								<li><a href="./check-out.html">Checkout</a></li>
-								<li><a href="./faq.html">Faq</a></li>
-								<li><a href="./register.html">Register</a></li>
-								<li><a href="./login.html">Login</a></li>
+								<c:if test="${login != null }">
+									<li><a href="/mypage">마이페이지</a></li>
+								</c:if>
+								<c:if test="${login == null }">
+									<li><a href="/loginN">로그인</a></li>
+									<li><a href="/register">회원가입</a></li>
+								</c:if>
 							</ul></li>
 					</ul>
 				</nav>
@@ -181,4 +170,3 @@
 		</div>
 	</header>
 	<!-- Header End -->
-

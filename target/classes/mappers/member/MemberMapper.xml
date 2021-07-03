@@ -17,10 +17,7 @@
 		<result property="mem_addr2" column="mem_addr2" />
 		<result property="mem_addr3" column="mem_addr3" />
 		<result property="mem_birth" column="mem_birth" />
-		<result property="mem_gender" column="mem_gender" />
-		<result property="mem_check" column="mem_check" />
 		<result property="mem_regdate" column="mem_regdate" />
-		<result property="mem_money" column="mem_money" />
 		<result property="mem_loginAPI" column="mem_loginAPI" />
 		<result property="session_id" column="session_id" />
 		<result property="limit_time" column="limit_time" />
@@ -31,12 +28,12 @@
 		INSERT INTO im_member
 		(mem_id, mem_pw, mem_name,
 		mem_nickname, mem_mobile, mem_email, mem_addr1, mem_addr2, mem_addr3,
-		mem_birth, mem_gender, mem_check, mem_regdate, mem_loginAPI)
+		mem_birth, mem_regdate, mem_loginAPI)
 		VALUES
 		(#{mem_id}, #{mem_pw}, #{mem_name},
 		#{mem_nickname}, #{mem_mobile}, #{mem_email}, #{mem_addr1}, #{mem_addr2},
 		#{mem_addr3},
-		#{mem_birth}, #{mem_gender}, #{mem_check},
+		#{mem_birth},
 		default, #{mem_loginAPI})
 	</insert>
 

@@ -36,24 +36,26 @@
 	<!-- 인터셉터 빈 등록 -->
 	<beans:bean id="boardInterceptor"
 		class="com.kg.idmine.commons.interceptor.BoardInterceptor" />	
-	<!-- 
 	<interceptors>
 		
 		<interceptor>
-			
 			<mapping path="/board/post" />
 			<mapping path="/board/update" />
 			<mapping path="/board/delete" />
+			<mapping path="/mypage" />
+			<mapping path="/update" />
 			<beans:ref bean="boardInterceptor" />
+			
 		</interceptor>
 		
 	</interceptors>	
-	-->
 		
 
 	<!-- 업로드 관련 빈 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.kg.idmine.naver.NaverLoginBO" />
 
 
 
