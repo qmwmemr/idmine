@@ -43,6 +43,7 @@
 							<div id="check"></div>
                             </div>
                             
+                            <!-- 
                             <div class="group-input gi-check">
                                 <div class="gi-more">
                                     <label for="save-pass">
@@ -53,6 +54,8 @@
                                     <a href="#" class="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
+                             -->
+                            
                             <button type="submit" class="site-btn login-btn"
 							id="login-btn"
 							style="width: 100%; letter-spacing: 2px; margin-top: 5px;">확인</button>

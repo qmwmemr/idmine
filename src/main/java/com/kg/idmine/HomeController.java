@@ -40,9 +40,13 @@ public class HomeController {
 		//영상 Top4
 		List<BoardVO> list2 = service.videoTop();
 		
+		//랜덤 숫자
+		int random = (int)(Math.random()*service.countAll()+1);
+		
+		
 		model.addAttribute("photo",list);
 		model.addAttribute("video",list2);
-		
+		model.addAttribute("random",random);
 		
 		return "home";
 	}

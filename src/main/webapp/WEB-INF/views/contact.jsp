@@ -61,7 +61,7 @@
                             </div>
                             <div class="ci-text">
                                 <span>Phone:</span>
-                                <p>010 - 1234 - 5678</p>
+                                <p>010 - 7154 - 0214</p>
                                 <p>010 - 9721 - 3006</p>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="ci-text">
                                 <span>Email:</span>
-                                <p>hellocolorlib@gmail.com</p>
+                                <p>ppink214@gmail.com</p>
                                 <p>qmwmemr@naver.com</p>
                             </div>
                         </div>

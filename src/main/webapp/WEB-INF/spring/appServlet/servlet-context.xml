@@ -50,6 +50,18 @@
 		
 	</interceptors>	
 		
+	<beans:bean id="csInterceptor" class="com.kg.idmine.commons.interceptor.CsInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/cs/write"/>
+			<mapping path="/cs/modify"/>
+			<mapping path="/cs/delete"/>
+			<mapping path="/cs/reply"/>
+			<mapping path="/cs/comment"/>
+			<beans:ref  bean="csInterceptor"/>
+		</interceptor>
+	</interceptors>
+		
 
 	<!-- 업로드 관련 빈 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>

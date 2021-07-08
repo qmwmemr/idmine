@@ -46,4 +46,7 @@ public interface IBoardService {
 
 	// 회원이 쓴 게시글 추출
 	List<BoardVO> memArticle(String mem_id);
+
+	// 랜덤 카운트
+	Integer countAll();
 }

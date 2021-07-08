@@ -242,6 +242,12 @@
 		order by board_updateDate DESC
 	</select>
 	
+	<!-- 총 게시물 갯수(랜덤) -->
+	<select id="countAll" resultType="int">
+		SELECT COUNT(*)
+		FROM im_board
+	</select>
+	
 </mapper>
 
 

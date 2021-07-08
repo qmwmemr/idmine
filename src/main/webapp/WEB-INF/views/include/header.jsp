@@ -41,7 +41,7 @@
 
 </head>
 
-<body>
+<body onload="commentData()">
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -51,11 +51,13 @@
 	<header class="header-section">
 
 		<div class="container">
-			<div class="inner-header">
+			<div class="inner-header"
+				style="padding-top: 15px; padding-bottom: 15px;">
 				<div class="row">
 					<div class="col-lg-2 col-md-2">
 						<div class="logo">
-							<a href="/"> <img src="<c:url value='/img/logo.png'/>" alt="">
+							<a href="/"> <img src="<c:url value='/img/logo1.png'/>"
+								alt="" style="max-width: 190%;">
 							</a>
 						</div>
 					</div>
@@ -80,48 +82,8 @@
 
 					</div>
 					<div class="col-lg-3 text-right col-md-3">
-						<ul class="nav-right">
-							<li class="cart-icon"><a href="#"> <i
-									class="icon_bag_alt"></i>
-							</a>
-								<div class="cart-hover">
-									<div class="select-items">
-										<table>
-											<tbody>
-												<tr>
-													<td class="si-pic"><img
-														src="<c:url value='/img/select-product-1.jpg'/>" alt=""></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-												<tr>
-													<td class="si-pic"><img
-														src="<c:url value='/img/select-product-2.jpg'/>" alt=""></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="select-total">
-										<span>total:</span>
-										<h5>$120.00</h5>
-									</div>
-									<div class="select-button">
-										<a href="#" class="primary-btn view-card">VIEW CARD</a> <a
-											href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-									</div>
-								</div></li>
+						<ul class="nav-right" style="margin-top: 30px;">
+
 							<li class="cart-price"><c:if test="${login != null }">
 									<button type="button" onclick="location.href='/member/logout' "
 										class="primary-btn" style="border: 0; outline: 0;">로그아웃</button>
@@ -150,7 +112,7 @@
 					<ul>
 						<li><a href="/">Home</a></li>
 						<li><a href="/board/?condition=photo">추억</a></li>
-						<li><a href="/cs">고객관리</a></li>
+						<li><a href="/cs/list">고객센터</a></li>
 						<li><a href="/about">소개</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li><a href="#">More</a>

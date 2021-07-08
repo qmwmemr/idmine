@@ -104,4 +104,8 @@ public class BoardService implements IBoardService {
 		return mapper.memArticle(mem_id);
 	}
 	
+	@Override
+	public Integer countAll() {
+		return mapper.countAll();
+	}
 }
